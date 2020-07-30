@@ -1,7 +1,6 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
-const console = require('better-console');
 const path = require('path');
 const session = require('express-session');
 const FileStore = require('session-file-store')(session);
@@ -9,6 +8,8 @@ const flash = require('connect-flash');
 require('dotenv').config();
 
 const indexRouter = require('./routes');
+const authRouter = require('./routes/kakao/auth');
+
 
 const app = express();
 
@@ -34,6 +35,7 @@ app.use(session({
 app.use(flash());
 
 app.use('/', indexRouter);
+app.use('/kakao/auth', authRouter);
 
 app.use((req, res, next) => {
   const err = new Error('Not Found');
