@@ -9,6 +9,8 @@ require('dotenv').config();
 
 const indexRouter = require('./routes');
 const authRouter = require('./routes/kakao/auth');
+const usersRouter = require('./routes/kakao/users');
+const messageRouter = require('./routes/kakao/message');
 
 
 const app = express();
@@ -36,6 +38,8 @@ app.use(flash());
 
 app.use('/', indexRouter);
 app.use('/kakao/auth', authRouter);
+app.use('/kakao/users', usersRouter);
+app.use('/kakao/message', messageRouter);
 
 app.use((req, res, next) => {
   const err = new Error('Not Found');
