@@ -1,0 +1,33 @@
+{
+  "name": "content-certified-messaging-service-backend",
+  "version": "0.0.0",
+  "description": "A messaging service backend to send content-certified messages through blockchain to KakaoTalk",
+  "main": "app.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "crypto": "^1.0.1",
+    "crypto-js": "^4.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "nodemon -i sessions app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qpakzk/content-certified-messaging-service-backend.git"
+  },
+  "keywords": [
+    "kakao-api",
+    "hyperledger-fabric",
+    "nodejs"
+  ],
+  "author": "Sangwon Hong",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/qpakzk/content-certified-messaging-service-backend/issues"
+  },
+  "homepage": "https://github.com/qpakzk/content-certified-messaging-service-backend#readme"
+}
