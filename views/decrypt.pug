@@ -1,0 +1,17 @@
+extends layout
+
+block content
+    include menu.pug
+
+    h1 Decrypt the message
+    form#form(action="/kakao/message/friends/decryption" method="POST")
+        .form-group
+            label(for='content') Message
+            textarea.form-control(name="encrypted" rows="5" placeholder="Type the message...")
+        button.btn.btn-primary(type="submit") Submit
+    
+    if decrypted.length !== 0
+        .card
+            h5.card-header Decrypted message
+            .card-body
+                .card-text #{decrypted}

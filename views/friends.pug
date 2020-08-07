@@ -1,0 +1,31 @@
+extends layout
+
+block content
+    include menu.pug
+
+    h1 Send to friends
+
+    a.btn.btn-primary(href='kakao/users/friends') Browse
+
+    form#form(action="/kakao/message/friends" method="POST" onSubmit="selectFriend()")
+        .form-group
+            select.custom-select#select(form="form")
+                option(value="" selected) List of Friends
+                if friends && friends.length !== 0
+                    each friend in friends
+                        option(value= friend.uuid) #{friend.profile_nickname}
+            label(for='content') Message
+            textarea.form-control(name="content" rows="5" placeholder="Type the message...")
+        button.btn.btn-primary(type="submit") Submit
+    
+    script.
+        function selectFriend() {
+            var select = document.getElementById("select");
+            var option = select.options[select.selectedIndex].value;
+            var form = document.getElementById('form');
+            var hiddenField = document.createElement("input");
+            hiddenField.setAttribute("type", "hidden");
+            hiddenField.setAttribute("name", "uuid");
+            hiddenField.setAttribute("value", option);
+            form.appendChild(hiddenField);
+        }

@@ -14,8 +14,6 @@ const REDIRECT_URL = `${HOST}/kakao/users/friends/callback`;
 const KAKAO_AUTH = 'https://kauth.kakao.com';
 const KAKAO_API = 'https://kapi.kakao.com';
 
-let friends_list = [];
-
 router.get('/profile', async (req, res) => {
     const { session } = req;
     const { access_token } = session.authData.kakao;
@@ -32,7 +30,7 @@ router.get('/profile', async (req, res) => {
   
         console.info("==== response.data ====");
         console.log(response.data);
-        res.json(response.data);
+        res.redirect(`/?nickName=${response.data.nickName}`);
     } catch (error) {
         console.error(error);
         res.json(error);
@@ -94,11 +92,8 @@ router.get('/friends/callback', async (req, res) => {
         return res.json(error);
     }
 
-    friends_list = friendsResponse.data.elements;
-    nick = friends_list[0].profile_nickname;
-    uuid = friends_list[0].uuid;
-    console.log(`profile_nickname=${friends_list[0].profile_nickname}`)
-    return res.redirect(`/${nick}?uuid=${uuid}`);
+    req.session.friendsResponse=friendsResponse.data;
+    return res.redirect(`/friends`);
 });
   
   module.exports = router;
