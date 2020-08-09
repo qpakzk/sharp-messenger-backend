@@ -1,3 +1,3 @@
-# Content-Certified Messaging Service Backend
+# Sharp Messenger Backend
 
-A messaging service backend to send content-certified messages through blockchain to KakaoTalk
+A web messenger backend to send content-certified messages through blockchain to KakaoTalk
