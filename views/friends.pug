@@ -13,7 +13,8 @@ block content
                 option(value="" selected) List of Friends
                 if friends && friends.length !== 0
                     each friend in friends
-                        option(value= friend.uuid) #{friend.profile_nickname}
+                        - var values = { 'uuid': friend.uuid, 'id': friend.id }
+                        option(value= JSON.stringify(values)) #{friend.profile_nickname}
             label(for='content') Message
             textarea.form-control(name="content" rows="5" placeholder="Type the message...")
         button.btn.btn-primary(type="submit") Submit
@@ -21,11 +22,21 @@ block content
     script.
         function selectFriend() {
             var select = document.getElementById("select");
-            var option = select.options[select.selectedIndex].value;
             var form = document.getElementById('form');
+
+            var option = select.options[select.selectedIndex].value;
+
+            var uuid = JSON.parse(option).uuid;
             var hiddenField = document.createElement("input");
             hiddenField.setAttribute("type", "hidden");
             hiddenField.setAttribute("name", "uuid");
-            hiddenField.setAttribute("value", option);
+            hiddenField.setAttribute("value", uuid);
             form.appendChild(hiddenField);
+
+            var id = JSON.parse(option).id;
+            var hiddenField2 = document.createElement("input");
+            hiddenField2.setAttribute("type", "hidden");
+            hiddenField2.setAttribute("name", "id");
+            hiddenField2.setAttribute("value", id);
+            form.appendChild(hiddenField2);
         }

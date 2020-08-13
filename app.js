@@ -11,6 +11,7 @@ const indexRouter = require('./routes');
 const authRouter = require('./routes/kakao/auth');
 const usersRouter = require('./routes/kakao/users');
 const messageRouter = require('./routes/kakao/message');
+const fabricRouter = require('./routes/fabric');
 
 
 const app = express();
@@ -40,6 +41,7 @@ app.use('/', indexRouter);
 app.use('/kakao/auth', authRouter);
 app.use('/kakao/users', usersRouter);
 app.use('/kakao/message', messageRouter);
+app.use('/fabric', fabricRouter);
 
 app.use((req, res, next) => {
   const err = new Error('Not Found');

@@ -27,7 +27,7 @@
     "nodemon": "^2.0.4"
   },
   "scripts": {
-    "start": "nodemon -i sessions app"
+    "start": "nodemon -i sessions -i wallet app"
   },
   "repository": {
     "type": "git",

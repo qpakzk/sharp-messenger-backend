@@ -6,8 +6,10 @@ block content
     h1 Decrypt the message
     form#form(action="/kakao/message/friends/decryption" method="POST")
         .form-group
-            label(for='content') Message
-            textarea.form-control(name="encrypted" rows="5" placeholder="Type the message...")
+            label(for="tokenID") Token ID:
+            input.form-control(type="text" name="tokenID" placeholder="Type the token id...")
+            label(for='encrypted') Encypted Message:
+            textarea.form-control(name="encrypted" rows="5" placeholder="Type the encrypted message...")
         button.btn.btn-primary(type="submit") Submit
     
     if decrypted.length !== 0

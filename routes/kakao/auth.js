@@ -2,6 +2,7 @@ const express = require('express');
 const console = require('better-console');
 const qs = require('qs');
 const axios = require('axios');
+const { registerUser } = require('../../fabric/user');
 
 const router = express.Router();
 
@@ -72,6 +73,7 @@ router.get('/callback', async (req, res) => {
   };
 
   linkUser(session, 'kakao', authData) ? console.info('계정에 연결되었습니다.') : console.warn('이미 연결된 계정입니다.');
+  await registerUser(userResponse.data.id.toString());
   res.redirect(`/?nickName=${userResponse.data.properties.nickname}`);
 });
 
